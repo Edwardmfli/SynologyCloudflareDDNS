@@ -74,7 +74,7 @@ fi
 
 if [[ $recordId = "null" ]]; then
     # Record not exists
-	proxy="true" # new Record. Enable proxy by default
+	proxy="false" # new Record. Enable proxy by default
     res=$(curl -s -X POST "$createDnsApi" -H "Authorization: Bearer $password" -H "Content-Type:application/json" --data "{\"type\":\"$recordType\",\"name\":\"$hostname\",\"content\":\"$ipAddr\",\"proxied\":$proxy}")
 else
     # Record exists
@@ -83,7 +83,7 @@ fi
 if [[ $ipv6 = "true" ]] ; then
 	if [[ $recordIdv6 = "null" ]]; then
     # IPv6 Record not exists
-	proxy="true"; # new entry, enable proxy by default
+	proxy="false"; # new entry, enable proxy by default
     res6=$(curl -s -X POST "$createDnsApi" -H "Authorization: Bearer $password" -H "Content-Type:application/json" --data "{\"type\":\"$recType6\",\"name\":\"$hostname\",\"content\":\"$ip6Addr\",\"proxied\":$proxy}");
 	else
     # IPv6 Record exists
